@@ -10,18 +10,31 @@ class Home extends Component {
     super();
     this.state={
       traffic_map:null,
-      drive_time:"8 am"
+      drive_time:"8 am",
+      error_message:""
     };    
   }
 
   clickMap(){
     var that=this;
 
+    this.setState({error_message:""});
+
     const homes=this.props.LocationStore.homes;    
-    const destinations=this.props.LocationStore.destinations;    
+    const destinations=this.props.LocationStore.destinations;
+
+    console.log(JSON.stringify(homes));
+    console.log(JSON.stringify(destinations));
+
+    if (homes.length===0 || destinations.length===0)
+    {
+      this.setState({error_message:"You must select at least 1 Home & Destination"});
+      return;
+    }
     
     const homesURL=homes.map(element => encodeURIComponent(element.address)).join('|');
     const destinationsURL=destinations.map(element => encodeURIComponent(element.address)).join('|');
+
 
     fetch('/api?destinations='+destinationsURL+'&origins='+homesURL+'&units=imperial')
     .then((response)=>{
@@ -45,11 +58,15 @@ class Home extends Component {
   }  
 
   render() {
+
     return (
       <div>
         <h1 className="text-left display-4">
           Traffic Analysis&nbsp;<br/> <p className="lead">Manage your home choices, and your frequently visited places. </p><hr/>
         </h1>
+        <div className={(this.state.error_message!=="" && this.state.error_message!==null)?"alert alert-danger":"alert d-none alert-danger"} role="alert">
+          {this.state.error_message}
+        </div>
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <button type="button" style={{minWidth:"150px"}} className="btn btn-outline-secondary">{this.state.drive_time}</button>
