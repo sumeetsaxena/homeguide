@@ -1,0 +1,62 @@
+.App {
+  text-align: center;
+  padding:15px;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  /*height: 80px;*/
+}
+
+.App-header {
+  padding: 2px;
+  color: white;
+  height: 56px;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.newLocation {
+  width:400px;
+}
+
+img.nav-svg{
+  height:20px;
+  width: auto;
+}
+
+.nav-item {
+  min-width: 140px;
+}
+
+.card-shadow{
+  box-shadow: 3px 3px 2px #888888;
+}
+
+.card-inactive{
+  color:#bbb;
+}
+
+ul.day-times {
+  padding:0px;
+  columns: 4;
+  -webkit-columns: 4;
+  -moz-columns: 4;
+  list-style-type: none;
+  column-gap: 4px;
+}
+ul.day-times li a{
+  font-size: 8pt;
+  max-width: 75px;
+}
