@@ -2,8 +2,6 @@ import React from 'react';
 import { inject,observer } from "mobx-react"
 
 
-@inject('LocationStore')
-@observer
 class TrafficMap extends React.Component{
     constructor(props){
         super();
@@ -39,4 +37,4 @@ class TrafficMap extends React.Component{
     }
 }
 
-export default TrafficMap;
+export default inject("LocationStore")(observer(TrafficMap));

@@ -56,7 +56,20 @@ ul.day-times {
   list-style-type: none;
   column-gap: 4px;
 }
+
+ul.day-weekdays {
+  padding:0px;
+  list-style-type: none;
+}
+
 ul.day-times li a{
   font-size: 8pt;
   max-width: 75px;
+  cursor: pointer;
+}
+
+ul.day-weekdays li a{
+  font-size: 11pt;
+  max-width: 75px;
+  cursor: pointer;  
 }

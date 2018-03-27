@@ -1,11 +1,11 @@
-import { computed, observable } from "mobx"
+import { computed, observable ,decorate } from "mobx"
 
 class Location {
-  @observable id
-  @observable title
-  @observable address
-  @observable is_home
-  @observable is_active
+  id;
+  title;
+  address;
+  is_home;
+  is_active;
 
 
   constructor(title,address,is_home,is_active) {
@@ -17,9 +17,17 @@ class Location {
   }
 }
 
-export class LocationStore {
-  @observable locations = [];
-  @observable checkpoint = Date.now();
+decorate(Location,{
+  id:observable,
+  title:observable,
+  address:observable,
+  is_home:observable,
+  is_active:observable
+});
+
+class LocationStore {
+  locations = [];
+  checkpoint = Date.now();
 
   constructor()
   {
@@ -47,13 +55,13 @@ export class LocationStore {
     }
   }
 
-  @computed get destinations() {
+  get destinations() {
     const destinations = this.locations.filter(location => location.is_home===false && (typeof location.is_active==="undefined" || location.is_active===true));
     
     return destinations;
   }
 
-  @computed get homes(){
+  get homes(){
     const homes = this.locations.filter(location => location.is_home===true && (typeof location.is_active==="undefined" || location.is_active===true));
     
     return homes;
@@ -110,6 +118,16 @@ export class LocationStore {
     this.save();    
   }
 }
+
+
+decorate(LocationStore,{
+  locations:observable,
+  checkpoint:observable,
+  destinations:computed,
+  homes:computed
+});
+
+
 const locationStore=new LocationStore();
 export default locationStore;
 

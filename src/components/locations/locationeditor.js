@@ -1,10 +1,9 @@
 import React from "react"
-import { inject,observer } from "mobx-react"
+import { inject, observer } from "mobx-react"
 //import { width } from "window-size";
 
-@inject('LocationStore')
-@observer
-export default class LocationEditor extends React.Component {
+
+class LocationEditor extends React.Component {
   constructor(){
     super();
     this.state={
@@ -131,3 +130,5 @@ export default class LocationEditor extends React.Component {
       );
   }
 }
+
+export default inject('LocationStore')(observer(LocationEditor));
