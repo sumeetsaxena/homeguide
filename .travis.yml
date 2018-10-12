@@ -7,7 +7,7 @@ services:
 
 
 before_install:
-  docker build -t ss/homeadvisor .
+  docker build -t ss/homeguide .
 
 script:
-  npm test -- --coverage
+  docker run ss/homeguide npm test -- --coverage
