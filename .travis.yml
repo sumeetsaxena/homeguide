@@ -10,16 +10,3 @@ before_install:
 
 script:
   - docker run ss/homeguide npm test -- --coverage
-
-  deploy:
-    provider: elasticbeanstalk
-    region: "us-west-1"
-    app: "homeadvisor"
-    env: "Homeadvisor-env"
-    bucket_name: "elasticbeanstalk-us-west-1-541635236411"
-    bucket_path: "homeadvisor"
-    on:
-      branch: master
-    access_key_id: $AWS_ACCESS_KEY
-    secret_access_key:
-      secure: "$AWS_SECRET_KEY"
