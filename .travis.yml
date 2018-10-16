@@ -8,9 +8,6 @@ services:
 before_install:
   - docker build -t ss/homeguide .
 
-script:
-  - docker run ss/homeguide npm test -- --coverage
-
 
 deploy:
   provider: elasticbeanstalk
